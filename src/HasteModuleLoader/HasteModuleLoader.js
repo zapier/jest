@@ -226,11 +226,11 @@ Loader.prototype._execModule = function(moduleObj) {
      || (onlyCollectFrom && onlyCollectFrom[modulePath] === true); */
 
   var shouldCollectCoverage =
-    this._config.collectCoverage === true && !onlyCollectFrom
+    this._config.collectCoverage === true && (!onlyCollectFrom
       || Object.keys(onlyCollectFrom).some(function (pattern) {
            return onlyCollectFrom[pattern] === true &&
              modulePath.match(new RegExp(pattern));
-         });
+         }));
 
   if (shouldCollectCoverage) {
     if (!this._coverageCollectors.hasOwnProperty(modulePath)) {
