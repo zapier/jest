@@ -221,9 +221,16 @@ Loader.prototype._execModule = function(moduleObj) {
   };
 
   var onlyCollectFrom = this._config.collectCoverageOnlyFrom;
+  /* var shouldCollectCoverage =
+     this._config.collectCoverage === true && !onlyCollectFrom
+     || (onlyCollectFrom && onlyCollectFrom[modulePath] === true); */
+
   var shouldCollectCoverage =
     this._config.collectCoverage === true && !onlyCollectFrom
-    || (onlyCollectFrom && onlyCollectFrom[modulePath] === true);
+      || Object.keys(onlyCollectFrom).some(function (pattern) {
+           return onlyCollectFrom[pattern] === true &&
+             modulePath.match(new RegExp(pattern));
+         });
 
   if (shouldCollectCoverage) {
     if (!this._coverageCollectors.hasOwnProperty(modulePath)) {

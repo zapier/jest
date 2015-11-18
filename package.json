@@ -37,7 +37,7 @@
     "url": "https://github.com/facebook/jest"
   },
   "scripts": {
-    "prepublish": "jshint --config=.jshintrc --exclude=src/coverageTemplate.js src && node bin/jest.js",
+    "prepublish": "jshint --config=.jshintrc --exclude=src/coverageTemplate.js src",
     "test": "jshint --config=.jshintrc --exclude=src/coverageTemplate.js src && node bin/jest.js"
   },
   "jest": {
